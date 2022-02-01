@@ -61,6 +61,8 @@ class Peikko:
 
 class Sankari:
     def __init__(self, nimi):
+    self.nimi = nimi
+    """Parametrina käytetään nimi"""
 
 def hurraa(olio):
     """Tulostaa satunnaisen hurrauksen annetulle oliolle.
