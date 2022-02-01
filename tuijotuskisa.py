@@ -62,7 +62,16 @@ class Peikko:
 class Sankari:
     def __init__(self, nimi):
     self.nimi = nimi
-    """Parametrina käytetään nimi"""
+    """Parametrina käytetään nimi
+        
+    Luokka kuvaa sankaria
+
+    :self.nimi: Nimi tallennetaan muuttujaan
+    :self.rohkeus: Muuttujalle annetaan satunnainen rohkeus
+    :self.katseen_voima: Muuttujalle annetaan satunnainen katseen voima
+    """
+    self.rohkeus = random.randint(4, 8)
+    self.katseen_voima = random.randint(6, 10)
 
 def hurraa(olio):
     """Tulostaa satunnaisen hurrauksen annetulle oliolle.
