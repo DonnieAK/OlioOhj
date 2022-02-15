@@ -63,6 +63,34 @@ class Peikko(Olento):
         :rtype: str
         """
         return self._arvo_sanat(self.RIEMUTAVUT, 8, " ", 0.7)
+    
+class Vuorenpeikko(Peikko):
+    """Luokka, joka kuvaa Vuorenpeikon.
+    :ivar nimi: vuorenpeikon nimi, arvotaan
+    :type nimi: str
+    :ivar rohkeus: vuorenpeikon rohkeus, arvotaan
+    :type rohkeus: int
+    :ivar katseen_voima: vuorenpeikon katseen voimakkuus, arvotaan
+    :type katseen_voima: int
+    """
+    NIMITAVUT = ("Ar", "Kar", "Krah", "Kur", "Gan", "Gazah", "Par", "Pazh", "Sagh", "Sudz")
+    RIEMUTAVUT = ("Egh", "Agh", "Uurgh", "Trar", "Prar", "Tza", "Kra", "Kur", "Sah", "Argh", "Sa")
+    def __init__(self, rohkeus=2, katseen_voima=3):
+        super().__init__(rohkeus, katseen_voima)
+        
+class Luolapeikko(Peikko):
+    """Luokka, joka kuvaa Luolapeikon.
+    :ivar nimi: luolapeikon nimi, arvotaan
+    :type nimi: str
+    :ivar rohkeus: luolapeikon rohkeus, arvotaan
+    :type rohkeus: int
+    :ivar katseen_voima: luolapeikon katseen voimakkuus, arvotaan
+    :type katseen_voima: int
+    """
+    NIMITAVUT = ("Rr", "Rar", "Rrah", "Rur", "Ran", "Razah", "Nar", "Razh", "Ragh", "Rudz")
+    RIEMUTAVUT = ("Bgh", "Ggh", "Hurgh", "Lrar", "Rrar", "Sza", "Ora", "Our", "Jah", "Jrgh", "Ja")
+    def __init__(self, rohkeus=3, katseen_voima=2):
+        super().__init__(rohkeus, katseen_voima)
 
 
 ### Kirjoita luokka Sankari tähän.
@@ -148,12 +176,6 @@ def taistele(vasen, oikea):
         return vasen
     else:
         return oikea
-
-#class Vuorenpeikko(Peikko):
-    #def
-
-#class Luolapeikko(Peikko):
-
 
 sankari = Sankari(input("Mikä on sankarimme nimi? "))
 pelastetut = 0
