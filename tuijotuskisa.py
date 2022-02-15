@@ -1,17 +1,28 @@
 import random
 import time
 
+class Olento:
+    """Kantaluokka peikolle ja sankarille
+    :ivar nimi: kuvaa olennon nimeä
+    :type nimi: str
+    :ivar rohkeus: olennon rohkeus
+    :type rohkeus: int
+    :ivar katseen_voima: olennon katseen voima
+    :type katseen_voima: int
+    """
+    def __init__(self, nimi, rohkeus, katseen_voima):
+        self.nimi = nimi
+        self.rohkeus = random.randint(rohkeus, rohkeus + 4)
+        self.katseen_voima = random.randint(katseen_voima, katseen_voima + 4)
 
-class Peikko:
+class Peikko(Olento):
     """Luokka, joka kuvaa Peikon.
-
     :ivar nimi: peikon nimi, arvotaan
     :type nimi: str
     :ivar rohkeus: peikon rohkeus, arvotaan
     :type rohkeus: int
     :ivar katseen_voima: peikon katseen voimakkuus, arvotaan
     :type katseen_voima: int
-
     Julkiset metodit
         arvo_hurraus()
     """
@@ -19,15 +30,13 @@ class Peikko:
     NIMITAVUT = ("Ur", "Gar", "Grah", "Gur", "Kan", "Kazah", "Bar", "Bazh", "Ragh", "Rudz")
     RIEMUTAVUT = ("Agh", "Ugh", "Ourgh", "Drar", "Brar", "Dza", "Gra", "Gur", "Rah", "Urgh", "Ra")
 
-    def __init__(self):
+    def __init__(self, rohkeus=1, katseen_voima=2):
         """Konstruktori."""
-        self.nimi = self._arvo_sanat(self.NIMITAVUT, 3, "-")
-        self.rohkeus = random.randint(4, 8)
-        self.katseen_voima = random.randint(2, 4)
+        nimi = self._arvo_sanat(self.NIMITAVUT, 3, "-")
+        super().__init__(nimi, rohkeus, katseen_voima)
 
     def _arvo_sanat(self, tavut, n, erotin, p=0.5):
         """Muodostaa satunnaisen tekstin annetuista tavuista.
-
         :param tavut: ne tavut, joita palautettava teksti voi sisältää
         :type tavut: Union[list[str], tuple[str]]
         :param n: mukaan poimittavien tavujen maksimimäärä
@@ -50,29 +59,55 @@ class Peikko:
 
     def arvo_hurraus(self):
         """Palauttaa satunnaisen hurraushuudahduksen.
-
         :return: hurraava huudahdus
         :rtype: str
         """
         return self._arvo_sanat(self.RIEMUTAVUT, 8, " ", 0.7)
+    
+class Vuorenpeikko(Peikko):
+    """Luokka, joka kuvaa Vuorenpeikon.
+    :ivar nimi: vuorenpeikon nimi, arvotaan
+    :type nimi: str
+    :ivar rohkeus: vuorenpeikon rohkeus, arvotaan
+    :type rohkeus: int
+    :ivar katseen_voima: vuorenpeikon katseen voimakkuus, arvotaan
+    :type katseen_voima: int
+    """
+    NIMITAVUT = ("Ar", "Kar", "Krah", "Kur", "Gan", "Gazah", "Par", "Pazh", "Sagh", "Sudz")
+    RIEMUTAVUT = ("Egh", "Agh", "Uurgh", "Trar", "Prar", "Tza", "Kra", "Kur", "Sah", "Argh", "Sa")
+    def __init__(self, rohkeus=2, katseen_voima=3):
+        super().__init__(rohkeus, katseen_voima)
+        
+class Luolapeikko(Peikko):
+    """Luokka, joka kuvaa Luolapeikon.
+    :ivar nimi: luolapeikon nimi, arvotaan
+    :type nimi: str
+    :ivar rohkeus: luolapeikon rohkeus, arvotaan
+    :type rohkeus: int
+    :ivar katseen_voima: luolapeikon katseen voimakkuus, arvotaan
+    :type katseen_voima: int
+    """
+    NIMITAVUT = ("Rr", "Rar", "Rrah", "Rur", "Ran", "Razah", "Nar", "Razh", "Ragh", "Rudz")
+    RIEMUTAVUT = ("Bgh", "Ggh", "Hurgh", "Lrar", "Rrar", "Sza", "Ora", "Our", "Jah", "Jrgh", "Ja")
+    def __init__(self, rohkeus=3, katseen_voima=2):
+        super().__init__(rohkeus, katseen_voima)
 
 
 ### Kirjoita luokka Sankari tähän.
 
-class Sankari:
+class Sankari(Olento):
+    """Luokka, joka kuvaa sankaria
+    :ivar nimi: sankarin nimi, kysytään
+    :type nimi: str
+    :ivar rohkeus: sankarin rohkeus, arvotaan
+    :type rohkeus: int
+    :ivar katseen_voima: sankarin katseen voimakkuus, arvotaan
+    :type katseen_voima: int
+     """
     def __init__(self, nimi):
-        self.nimi = nimi
-        """Parametrina käytetään nimi
-
-        Luokka kuvaa sankaria
-
-        :self.nimi: Nimi tallennetaan muuttujaan
-        :self.rohkeus: Muuttujalle annetaan satunnainen rohkeus
-        :self.katseen_voima: Muuttujalle annetaan satunnainen katseen voima
-        """
-        self.rohkeus = random.randint(4, 8)
-        self.katseen_voima = random.randint(6, 10)
+        super().__init__(nimi, 2, 4)
     
+
     def arvo_hurraus(self):
         """Metodi arvo_hurraus antaa satunnaisen huudahduksen listasta sankarille"""
         hurraukset = ["JES", "AHAHA", "MILTÄ TUNTUU", "SIITÄ SAAT", "KYLLÄ"]
@@ -80,7 +115,6 @@ class Sankari:
 
 def hurraa(olio):
     """Tulostaa satunnaisen hurrauksen annetulle oliolle.
-
     :param olio: hurraava olio
     """
     print('%s: "%s!"' % (olio.nimi, olio.arvo_hurraus()))
@@ -88,7 +122,6 @@ def hurraa(olio):
 
 def tulosta_rapaytys(rapayttaja):
     """Tulostaa sopivan tekstin räpäyttävälle oliolle.
-
     :param rapayttaja: silmiään räpäyttävä olio
     """
     if rapayttaja:
@@ -102,7 +135,6 @@ def tulosta_rapaytys(rapayttaja):
 
 def tuijota(olio1, olio2):
     """Asettaa annetut oliot taistelemaan keskenään yhden kierroksen.
-
     :param vasen: ensimmäinen taisteleva olio
     :type vasen: Union[Sankari, Peikko]
     :param oikea: toinen taisteleva olio
@@ -129,7 +161,6 @@ def tuijota(olio1, olio2):
 
 def taistele(vasen, oikea):
     """Asettaa annetut oliot taistelemaan keskenään, kunnes toinen voittaa.
-
     :param vasen: ensimmäinen taisteleva olio
     :type vasen: Union[Sankari, Peikko]
     :param oikea: toinen taisteleva olio
@@ -146,7 +177,6 @@ def taistele(vasen, oikea):
     else:
         return oikea
 
-
 sankari = Sankari(input("Mikä on sankarimme nimi? "))
 pelastetut = 0
 # Käydään tuijotuskisoja peikkoja vastaan, kunnes sankari karkaa
@@ -157,7 +187,8 @@ while sankari.rohkeus > 0:
     time.sleep(0.7)
 
     # Tulostetaan vastaan tulevan peikon tiedot.
-    peikko = Peikko()
+    peikko0 = random.choice((Peikko, Luolapeikko, Vuorenpeikko))
+    peikko = peikko0()
     peikon_tiedot = peikko.nimi + " [" + str(peikko.rohkeus) + "]"
     print("Vastaan tulee hurja %s!" % peikon_tiedot)
     time.sleep(1)
