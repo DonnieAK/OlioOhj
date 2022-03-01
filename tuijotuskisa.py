@@ -63,7 +63,7 @@ class Peikko(Olento):
         :rtype: str
         """
         return self._arvo_sanat(self.RIEMUTAVUT, 8, " ", 0.7)
-    
+
 class Vuorenpeikko(Peikko):
     """Luokka, joka kuvaa Vuorenpeikon.
     :ivar nimi: vuorenpeikon nimi, arvotaan
@@ -77,7 +77,7 @@ class Vuorenpeikko(Peikko):
     RIEMUTAVUT = ("Egh", "Agh", "Uurgh", "Trar", "Prar", "Tza", "Kra", "Kur", "Sah", "Argh", "Sa")
     def __init__(self, rohkeus=2, katseen_voima=3):
         super().__init__(rohkeus, katseen_voima)
-        
+
 class Luolapeikko(Peikko):
     """Luokka, joka kuvaa Luolapeikon.
     :ivar nimi: luolapeikon nimi, arvotaan
@@ -104,14 +104,17 @@ class Sankari(Olento):
     :ivar katseen_voima: sankarin katseen voimakkuus, arvotaan
     :type katseen_voima: int
      """
+
+    HURRAUKSET = ["JES", "AHAHA", "MILTÄ TUNTUU", "SIITÄ SAAT", "KYLLÄ"]
+
     def __init__(self, nimi):
-        super().__init__(nimi, 2, 4)
+        super().__init__(nimi, 2, 3)
     
 
     def arvo_hurraus(self):
         """Metodi arvo_hurraus antaa satunnaisen huudahduksen listasta sankarille"""
-        hurraukset = ["JES", "AHAHA", "MILTÄ TUNTUU", "SIITÄ SAAT", "KYLLÄ"]
-        hurraa = random.choice(hurraukset)
+        return random.choice(self.HURRAUKSET)
+        
 
 def hurraa(olio):
     """Tulostaa satunnaisen hurrauksen annetulle oliolle.
