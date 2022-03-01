@@ -35,6 +35,36 @@ class Laskija:
 
 
 ### Lisää MonenLaskija ja argumenttien_tulostaja tähän.
+class MonenLaskija(Laskija):
+    """Luokka, joka toteuttaa eri laskutoimituksia mille tahansa määrälle lukuja.
+
+    Julkiset metodit:
+        summaa(Union[int, float], Union[int, float])
+        kerro(Union[int, float], Union[int, float])
+    """
+
+    def summaa(self, *luvut):
+        """Palauttaa annetujen lukujen summan.
+
+        :param a: summattavat luvut
+        :type luvut: tuple[Union[int, float]]
+        :return: lukujen summa
+        :rtype: Union[int, float]
+        """
+        return sum(luvut)
+
+    def kerro(self, *luvut):
+        """Palauttaa annettujen lukujen tulon.
+
+        :param a: tulon ensimmäinen luku
+        :type a: tuple[Union[int, float]]
+        :return: lukujen tulo
+        :rtype: Union[int, float]
+        """
+        tulo = 1
+        for luku in luvut:
+            tulo *= luku
+        return tulo
 
 
 
