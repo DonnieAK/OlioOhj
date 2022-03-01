@@ -65,8 +65,11 @@ class MonenLaskija(Laskija):
         for luku in luvut:
             tulo *= luku
         return tulo
-
-
+    
+def argumenttien_tulostaja(**purettavat):
+    """Tulostaa annetut tiedot. """
+    for k, v in purettavat.items():
+      print(f'Argumentin "{k}" arvo on {v}.')
 
 
 ### Seuraavat rivit tekevät tarkistustulostukset. Älä koske niihin.
