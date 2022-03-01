@@ -103,6 +103,8 @@ class Sankari(Olento):
     :type rohkeus: int
     :ivar katseen_voima: sankarin katseen voimakkuus, arvotaan
     :type katseen_voima: int
+    :return: satunnaiset hurraukset
+    :rtype str
      """
 
     HURRAUKSET = ["JES", "AHAHA", "MILTÄ TUNTUU", "SIITÄ SAAT", "KYLLÄ"]
